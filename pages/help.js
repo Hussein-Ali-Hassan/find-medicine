@@ -43,6 +43,7 @@ export default function Help({ data }) {
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
             target="_blank"
+            rel="noreferrer"
           >
             هذه الاستمارة
           </a>
