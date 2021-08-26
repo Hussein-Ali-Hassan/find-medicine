@@ -5,7 +5,7 @@ import SearchBox from "@/components/SearchBox";
 import FilterBox from "@/components/FilterBox";
 import Medicine from "@/components/Medicine";
 
-export default function help({ data }) {
+export default function Help({ data }) {
   const [q, setQ] = useState("");
   const [items, setItems] = useState([]);
   const [searchParam] = useState(["name"]);
