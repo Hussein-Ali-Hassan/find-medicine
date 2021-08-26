@@ -13,6 +13,7 @@ export default function Help({ data }) {
 
   useEffect(() => {
     setItems(data);
+    // eslint-disable-next-line
   }, []);
 
   function search(items) {
