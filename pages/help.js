@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import firebase from "../config/firebase";
 import SearchBox from "@/components/SearchBox";
 import FilterBox from "@/components/FilterBox";
 import Medicine from "@/components/Medicine";
 
-export default function Home({ data }) {
+export default function help({ data }) {
   const [q, setQ] = useState("");
   const [items, setItems] = useState([]);
   const [searchParam] = useState(["name"]);
@@ -35,11 +35,10 @@ export default function Home({ data }) {
 
   return (
     <>
-      <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المتوفرة</h1>
-
+      <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
         <strong className="mb-4 d-block">
-          تملك دواء لا تحتاجه ؟ ساعد غيرك بتعبئة{" "}
+          تبحث عن دواء ولا تجده ؟ قم بتعبئة{" "}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
             target="_blank"
@@ -68,7 +67,7 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
-    .collection("availableMedicines")
+    .collection("wantedMedicines")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {

@@ -1,0 +1,24 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import "./customize-bootstrap.scss";
+
+@import "./nav.scss";
+@import "./medicine.scss";
+@import "./spinner.scss";
+
+.object-fit {
+  object-fit: cover;
+}
