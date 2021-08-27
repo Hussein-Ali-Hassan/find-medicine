@@ -1,8 +1,7 @@
 import MedicineModal from "./MedicineModal";
 
 const Medicine = ({ medicine }) => {
-  const { id, name, contact, city, image } = medicine;
-  console.log(medicine);
+  const { name, contact, city, image } = medicine;
   return (
     <div className="productItem-container">
       <img

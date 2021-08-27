@@ -1,7 +1,7 @@
 import { FaWhatsapp, FaSms, FaPhoneAlt } from "react-icons/fa";
 
 const MedicineModal = ({
-  medicine: { id, name, city, contact, image, expiryDate, addedAt },
+  medicine: { id, name, city, contact, image, expiryDate },
 }) => {
   const modalBody = (
     <div className="modal-body">
@@ -12,9 +12,9 @@ const MedicineModal = ({
         className="d-block w-100 object-fit"
       />
       <div className="my-3">
-        <p>
+        {/* <p>
           تاريخ الطلب: <strong>{addedAt}</strong>
-        </p>
+        </p> */}
         <p>
           اسم الدواء: <strong>{name}</strong>
         </p>

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 import Link from "next/link";
-import { FaMedkit, FaCommentMedical } from "react-icons/fa";
+import { FaMedkit, FaCommentMedical, FaPlusSquare } from "react-icons/fa";
 
 export default function Navbar({ currentPage }) {
   return (
@@ -24,6 +24,16 @@ export default function Navbar({ currentPage }) {
           >
             <FaCommentMedical className="fs-3" />
             <span>الأدوية المطلوبة</span>
+          </div>
+        </Link>
+        <Link href="/add">
+          <div
+            className={`my-nav-item ${
+              currentPage === "add" ? "text-primary" : ""
+            }`}
+          >
+            <FaPlusSquare className="fs-3" />
+            <span>تقديم طلب</span>
           </div>
         </Link>
       </nav>
