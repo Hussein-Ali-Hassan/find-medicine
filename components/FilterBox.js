@@ -1,5 +1,3 @@
-import cities from "../config/cities";
-
 export default function FilterBox({ setFilterParam }) {
   return (
     <select

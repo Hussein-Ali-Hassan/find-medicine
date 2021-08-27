@@ -10,7 +10,13 @@ class MyDocument extends Document {
             data-domain="findmedicine.org"
             src="https://plausible.io/js/plausible.js"
           ></script>
-
+          <meta
+            name="description"
+            content="
+          بهالأزمة الي عم نمرق فيها جميعاً ولهي مشكلة فقدان معظم الأدوية من
+          الصيدليات ..
+          أنشئنا هالمنصة لنساعد بعضنا بتأمين الادوية المقطوعة للناس المحتاجة"
+          />
           <meta name="author" content="Hussein_Hassan" />
           <meta property="og:title" content="Find Medicine" />
           <meta
