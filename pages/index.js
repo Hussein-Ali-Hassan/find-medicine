@@ -80,7 +80,7 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
     .collection("availableMedicines")
@@ -90,5 +90,6 @@ export async function getServerSideProps() {
     props: {
       data,
     },
+    revalidate: 120,
   };
 }
