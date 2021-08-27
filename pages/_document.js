@@ -5,6 +5,12 @@ class MyDocument extends Document {
     return (
       <Html lang="ar" dir="rtl">
         <Head>
+          <script
+            defer
+            data-domain="findmedicine.org"
+            src="https://plausible.io/js/plausible.js"
+          ></script>
+
           <meta name="author" content="Hussein_Hassan" />
           <meta property="og:title" content="Find Medicine" />
           <meta
