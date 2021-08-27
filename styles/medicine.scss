@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   place-items: center;
   padding-bottom: 5rem;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 759px) and (min-width: 600px) {
@@ -24,7 +25,7 @@
 }
 
 .productItem-container {
-  width: 185px;
+  width: 180px;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@
 // too small screens
 @media screen and (max-width: 400px) {
   .productItem-container {
-    width: 158px;
+    width: 154px;
   }
 }
 

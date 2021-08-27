@@ -4,7 +4,22 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="ar" dir="rtl">
-        <Head></Head>
+        <Head>
+          <meta name="author" content="Hussein_Hassan" />
+          <meta property="og:title" content="Find Medicine" />
+          <meta
+            property="og:description"
+            content="
+          بهالأزمة الي عم نمرق فيها جميعاً ولهي مشكلة فقدان معظم الأدوية من
+          الصيدليات ..
+          أنشئنا هالمنصة لنساعد بعضنا بتأمين الادوية المقطوعة للناس المحتاجة"
+          />
+          <meta
+            property="og:image"
+            content="https://res.cloudinary.com/dtp45ukcw/image/upload/v1630048633/36542_lurhzk.jpg"
+          />
+          <meta property="og:url" content="https://www.findmedicine.org/" />
+        </Head>
         <body>
           <Main />
           <NextScript />

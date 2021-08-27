@@ -5,7 +5,11 @@ const Medicine = ({ medicine }) => {
 
   return (
     <div className="productItem-container">
-      <img className="productItem-image" src="https://ak.picdn.net/shutterstock/videos/1016544112/thumb/1.jpg" alt={"img-" + name} />
+      <img
+        className="productItem-image"
+        src={image ? image : "/medicine.jpeg"}
+        alt={"img-" + name}
+      />
       <div className="productItem-details-container">
         <span className="productItem-name">
           اسم الدواء: <strong>{name}</strong>

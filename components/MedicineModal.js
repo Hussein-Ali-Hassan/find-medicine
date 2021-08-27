@@ -6,8 +6,7 @@ const MedicineModal = ({
   const modalBody = (
     <div className="modal-body">
       <img
-        // src={image}
-        src="https://ak.picdn.net/shutterstock/videos/1016544112/thumb/1.jpg"
+        src={image ? image : "/medicine.jpeg"}
         alt={"img" + name}
         height="320"
         className="d-block w-100 object-fit"

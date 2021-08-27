@@ -1,0 +1,23 @@
+.slide-container {
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+
+  img {
+    width: 300px;
+    object-fit: cover;
+  }
+  .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    margin: auto;
+  }
+}

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Navbar from "@/components/Navbar";
+import IntroSlider from "@/components/IntroSlider";
 import firebase from "../config/firebase";
 import SearchBox from "@/components/SearchBox";
 import FilterBox from "@/components/FilterBox";
@@ -10,9 +12,15 @@ export default function Home({ data }) {
   const [items, setItems] = useState([]);
   const [searchParam] = useState(["name"]);
   const [filterParam, setFilterParam] = useState(["All"]);
+  const [showSlide, setShowSlide] = useState(false);
 
   useEffect(() => {
     setItems(data);
+
+    if (!localStorage.getItem("slide")) {
+      setShowSlide(true);
+      localStorage.setItem("slide", true);
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -36,10 +44,12 @@ export default function Home({ data }) {
 
   return (
     <>
+      {showSlide && <IntroSlider />}
+      <Navbar currentPage="home" />
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المتوفرة</h1>
 
       <div className="container my-3">
-        <strong className="mb-4 d-block">
+        <strong className="mb-4 d-block text-muted">
           تملك دواء لا تحتاجه ؟ ساعد غيرك بتعبئة{" "}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
@@ -49,7 +59,7 @@ export default function Home({ data }) {
             هذه الاستمارة
           </a>
         </strong>
-        <div className="my-3 row">
+        <div className="my-3 row g-1">
           <div className="col-7">
             <SearchBox q={q} setQ={setQ} />
           </div>
@@ -57,6 +67,9 @@ export default function Home({ data }) {
             <FilterBox setFilterParam={setFilterParam} />
           </div>
         </div>
+        {data.length === 0 && (
+          <h2 className="mt-5">لا يوجد أدوية متوفرة في الوقت الحالي</h2>
+        )}
         <main className="medicines-container">
           {search(data).map((medicine) => (
             <Medicine key={medicine.name} medicine={medicine} />
