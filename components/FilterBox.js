@@ -41,11 +41,6 @@ export default function FilterBox({ setFilterParam }) {
         <option value=" البقاع الغربي">البقاع الغربي</option>
         <option value="راشيا">راشيا</option>
       </optgroup>
-      {cities.map((city) => (
-        <option key={city} value={city}>
-          {city}
-        </option>
-      ))}
     </select>
   );
 }
