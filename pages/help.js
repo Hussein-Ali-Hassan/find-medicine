@@ -72,7 +72,7 @@ export default function Help({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const snapshot = await firebase
     .firestore()
     .collection("wantedMedicines")

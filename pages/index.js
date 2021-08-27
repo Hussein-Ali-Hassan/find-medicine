@@ -80,7 +80,7 @@ export default function Home({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const snapshot = await firebase
     .firestore()
     .collection("availableMedicines")
