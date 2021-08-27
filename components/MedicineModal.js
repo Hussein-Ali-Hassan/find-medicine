@@ -70,7 +70,7 @@ const MedicineModal = ({
       className="modal fade "
       data-bs-backdrop="static"
       data-bs-keyboard="false"
-      id={`s-${name}`}
+      id={`s-${contact}`}
       // @ts-ignore
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"

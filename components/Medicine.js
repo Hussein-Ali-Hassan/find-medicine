@@ -20,7 +20,7 @@ const Medicine = ({ medicine }) => {
         <button
           className="btn btn-primary text-white"
           data-bs-toggle="modal"
-          data-bs-target={`#s-${name}`}
+          data-bs-target={`#s-${contact}`}
         >
           التفاصيل
         </button>
