@@ -77,7 +77,7 @@ export async function getServerSideProps() {
   const snapshot = await firebase
     .firestore()
     .collection("wantedMedicines")
-    .orderBy("addedAt", "asc")
+    .orderBy("addedAt", "desc")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {
