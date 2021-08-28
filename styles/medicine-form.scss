@@ -1,0 +1,27 @@
+.my-error {
+  position: absolute;
+  color: red;
+  font-size: 0.6rem;
+}
+
+.medicine-form {
+  max-width: 325px;
+  margin: auto;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+label {
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+.image-upload {
+  width: 100px;
+  height: 100px;
+  background-color: #f8f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(190, 190, 190);
+  margin-bottom: 20px;
+}

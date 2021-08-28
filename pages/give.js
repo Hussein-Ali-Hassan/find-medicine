@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 import Navbar from "@/components/Navbar";
 import firebase from "../config/firebase";
@@ -42,14 +43,7 @@ export default function Give({ data }) {
 
       <div className="container my-3">
         <strong className="mb-4 d-block text-muted">
-          تملك دواء لا تحتاجه ؟ ساعد غيرك بتعبئة{" "}
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            هذه الاستمارة
-          </a>
+          تملك دواء لا تحتاجه ؟ ساعد غيرك <Link href="/add">هنا</Link>{" "}
         </strong>
         <div className="my-3 row g-1">
           <div className="col-7">

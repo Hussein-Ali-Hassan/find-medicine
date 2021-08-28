@@ -12,20 +12,22 @@ const AddMedicine = ({ setLoading }) => {
   const validate = Yup.object({
     name: Yup.string().required("الاسم مطلوب"),
     city: Yup.string().required("العنوان مطلوب"),
+    disease: Yup.string().required("المرض مطلوب"),
     contact: Yup.number()
       .positive()
       .required("الرقم للتواصل مطلوب (باللغة الانكليزية)"),
   });
-
   return (
     <Formik
-      initialValues={{
-        name: "",
-        city: "",
-        contact: "",
-      }}
-      validationSchema={validate}
-      onSubmit={({ name, city, contact }) => {
+    initialValues={{
+      name: "",
+      city: "",
+      disease: "",
+      contact: "",
+    }}
+    validationSchema={validate}
+    onSubmit={({ name, city, contact, disease }) => {
+        const addedAt = new Date().toLocaleDateString();
         setLoading(true);
         firebase
           .firestore()
@@ -33,7 +35,9 @@ const AddMedicine = ({ setLoading }) => {
           .add({
             name,
             city,
+            disease,
             contact,
+            addedAt,
           })
           .then(() => setLoading(false))
           .catch((err) => alert(err.message));
@@ -44,7 +48,7 @@ const AddMedicine = ({ setLoading }) => {
           <Form>
             <ImageUpload setImage={setImage} />
             <TextField label="إسم الدواء" name="name" type="text" />
-
+            <TextField label="المرض" name="disease" type="text" />
             <SelectField label="العنوان" name="city" />
             <TextField
               label="رقم للتواصل (دون رمز البلد)"

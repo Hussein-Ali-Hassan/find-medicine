@@ -4,21 +4,22 @@ export default function FilterBox({ setFilterParam }) {
       className="form-select"
       onChange={(e) => setFilterParam(e.target.value)}
     >
-      <option selected value="All">
+      <option defaultValue value="All">
         جميع المناطق
       </option>
       <option value="بيروت">بيروت</option>
-      <optgroup label="محافظة الجنوب">
-        <option value="صيدا">صيدا</option>
-        <option value="صور">صور</option>
-        <option value="جزين">جزين</option>
-      </optgroup>
       <optgroup label="محافظة النبطية">
         <option value="النبطية">النبطية</option>
         <option value="حاصبيا">حاصبيا</option>
         <option value="مرجعيون">مرجعيون</option>
         <option value="بنت جبيل"> بنت جبيل</option>
       </optgroup>
+      <optgroup label="محافظة الجنوب">
+        <option value="صيدا">صيدا</option>
+        <option value="صور">صور</option>
+        <option value="جزين">جزين</option>
+      </optgroup>
+
       <optgroup label="محافظة عكار">
         <option value="عكار">عكار</option>
       </optgroup>

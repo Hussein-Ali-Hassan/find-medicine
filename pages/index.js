@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import Navbar from "@/components/Navbar";
 import firebase from "../config/firebase";
@@ -49,14 +50,7 @@ export default function Home({ data }) {
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
         <strong className="mb-4 d-block text-muted">
-          تبحث عن دواء ولا تجده ؟ قم بتعبئة{" "}
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            هذه الاستمارة
-          </a>
+           تحتاج دواء ولا تجده ؟ أرسل طلبك <Link href="/add">هنا</Link>{" "}
         </strong>
         <div className="my-3 row g-1">
           <div className="col-7">

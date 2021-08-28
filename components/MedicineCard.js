@@ -12,25 +12,25 @@ export default function MedicineCard({ medicine }) {
       />
       <div className="card-body">
         {addedAt && (
-          <p class="card-text">
+          <p className="card-text">
             <strong>تاريخ الطلب: </strong> {addedAt}
           </p>
         )}
-        <p class="card-text">
+        <p className="card-text">
           <strong>الدواء المطلوب: </strong> {name}
         </p>
         {disease && (
-          <p class="card-text">
+          <p className="card-text">
             <strong>المرض: </strong> {disease}
           </p>
         )}
         {expiryDate && (
-          <p class="card-text">
+          <p className="card-text">
             {" "}
             <strong>تاريخ انتهاء الصلاحية:</strong> {expiryDate}
           </p>
         )}
-        <p class="card-text">
+        <p className="card-text">
           <strong>المنطقة:</strong> {city}
         </p>
       </div>

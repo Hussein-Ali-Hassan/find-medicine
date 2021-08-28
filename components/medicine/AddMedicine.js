@@ -14,6 +14,7 @@ const AddMedicine = ({ setLoading }) => {
   const validate = Yup.object({
     name: Yup.string().required("الاسم مطلوب"),
     city: Yup.string().required("العنوان مطلوب"),
+    disease: Yup.string().required("المرض مطلوب"),
     expiryDate: Yup.date().required("تاريخ انتهاء الصلاحية مطلوب"),
     contact: Yup.number()
       .positive()
@@ -26,10 +27,12 @@ const AddMedicine = ({ setLoading }) => {
         name: "",
         expiryDate: "",
         city: "",
+        disease: "",
         contact: "",
       }}
       validationSchema={validate}
-      onSubmit={({ name, expiryDate, city, contact }) => {
+      onSubmit={({ name, expiryDate, city, contact, disease }) => {
+         const addedAt = new Date().toLocaleDateString();
         setLoading(true);
         firebase
           .firestore()
@@ -38,7 +41,8 @@ const AddMedicine = ({ setLoading }) => {
             name,
             expiryDate,
             city,
-            contact,
+            disease,
+            contact,addedAt
           })
           .then(() => setLoading(false))
           .catch((err) => alert(err.message));
@@ -49,6 +53,7 @@ const AddMedicine = ({ setLoading }) => {
           <Form>
             <ImageUpload setImage={setImage} />
             <TextField label="إسم الدواء" name="name" type="text" />
+            <TextField label="المرض" name="disease" type="text" />
             <TextField
               label="تاريخ انتهاء الصلاحية"
               name="expiryDate"
