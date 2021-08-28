@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import TextField from "@/components/form/TextField";
 import SelectField from "@/components/form/SelectField";
 import ImageUpload from "@/components/form/ImageUpload";
-import Spinner from "../Spinner";
 import firebase from "../../config/firebase";
 
 const AddMedicine = ({ setLoading }) => {
@@ -32,27 +31,65 @@ const AddMedicine = ({ setLoading }) => {
       }}
       validationSchema={validate}
       onSubmit={({ name, expiryDate, city, contact, disease }) => {
-         const addedAt = new Date().toLocaleDateString();
         setLoading(true);
-        firebase
-          .firestore()
-          .collection("availableMedicines")
-          .add({
-            name,
-            expiryDate,
-            city,
-            disease,
-            contact,addedAt
-          })
-          .then(() => setLoading(false))
-          .catch((err) => alert(err.message));
+        const addedAt = new Date().toLocaleDateString();
+
+        if (image) {
+          const storageRef = firebase.storage().ref(image.name);
+
+          storageRef.put(image).on(
+            "state_changed",
+            (snap) => {},
+            (err) => {
+              alert(err.message);
+            },
+            async () => {
+              const url = await storageRef.getDownloadURL();
+
+              firebase
+                .firestore()
+                .collection("availableMedicines")
+                .add({
+                  name,
+                  city,
+                  disease,
+                  contact,
+                  addedAt,
+                  expiryDate,
+                  image: url,
+                })
+                .then(() => {
+                  setLoading(false);
+                  alert("تم ارسال الدواء! شكرا لمساهمتكم");
+                })
+                .catch((err) => alert(err.message));
+            }
+          );
+        } else {
+          firebase
+            .firestore()
+            .collection("availableMedicines")
+            .add({
+              name,
+              city,
+              disease,
+              contact,
+              addedAt,
+              expiryDate,
+            })
+            .then(() => {
+              setLoading(false);
+              alert("تم ارسال الدواء! شكرا لمساهمتكم");
+            })
+            .catch((err) => alert(err.message));
+        }
       }}
     >
       {({ isValid }) => (
         <div>
           <Form>
             <ImageUpload setImage={setImage} />
-            <TextField label="إسم الدواء" name="name" type="text" />
+            <TextField label="إسم الدواء المتوفر" name="name" type="text" />
             <TextField label="المرض" name="disease" type="text" />
             <TextField
               label="تاريخ انتهاء الصلاحية"

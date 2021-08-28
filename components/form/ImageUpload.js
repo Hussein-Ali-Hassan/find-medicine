@@ -17,26 +17,29 @@ export default function ImageUpload({ setImage }) {
     }
   };
   return (
-    <div className="image-upload">
-      <label htmlFor="image">{!imagePreview && <FaCamera />}</label>
-      {imagePreview && (
-        <img
-          src={imagePreview}
-          alt="medicine-image"
-          width="100"
-          height="100"
-          className="object-fit"
+    <>
+      <label className="mb-1">صورة الدواء</label>
+      <div className="image-upload">
+        <label htmlFor="image">{!imagePreview && <FaCamera />}</label>
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="medicine-image"
+            width="100"
+            height="100"
+            className="object-fit"
+          />
+        )}
+        <input
+          name="image"
+          id="image"
+          type="file"
+          accept="image/gif, image/jpeg, image/png"
+          onChange={handleImageUpload}
+          style={{ display: "none" }}
+          disabled={imagePreview}
         />
-      )}
-      <input
-        name="image"
-        id="image"
-        type="file"
-        accept="image/gif, image/jpeg, image/png"
-        onChange={handleImageUpload}
-        style={{ display: "none" }}
-        disabled={imagePreview}
-      />
-    </div>
+      </div>
+    </>
   );
 }

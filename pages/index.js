@@ -45,13 +45,13 @@ export default function Home({ data }) {
 
   return (
     <>
-      {/* {showSlide && <IntroSlider />} */}
+      {showSlide && <IntroSlider />}
       <Navbar currentPage="help" />
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
-        {/* <strong className="mb-4 d-block text-muted">
-           تحتاج دواء ولا تجده ؟ أرسل طلبك <Link href="/add">هنا</Link>{" "}
-        </strong> */}
+        <strong className="mb-4 d-block text-muted">
+          تحتاج دواء ولا تجده ؟ أرسل طلبك <Link href="/add">هنا</Link>{" "}
+        </strong>
         <div className="my-3 row g-1">
           <div className="col-7">
             <SearchBox q={q} setQ={setQ} />
@@ -77,12 +77,13 @@ export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
     .collection("wantedMedicines")
+    .orderBy("addedAt", "desc")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {
     props: {
       data,
     },
-    revalidate: 5,
+    revalidate: 3,
   };
 }

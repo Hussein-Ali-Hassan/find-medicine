@@ -26,7 +26,7 @@ export default function Navbar({ currentPage }) {
             <span>الأدوية المتوفرة</span>
           </div>
         </Link>{" "}
-        {/* <Link href="/add">
+        <Link href="/add">
           <div
             className={`my-nav-item ${
               currentPage === "add" ? "text-primary" : ""
@@ -35,7 +35,7 @@ export default function Navbar({ currentPage }) {
             <FaPlusSquare className="fs-3" />
             <span>تقديم طلب</span>
           </div>
-        </Link> */}
+        </Link>
       </nav>
     </>
   );

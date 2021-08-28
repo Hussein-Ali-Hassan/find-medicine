@@ -42,9 +42,9 @@ export default function Give({ data }) {
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المتوفرة</h1>
 
       <div className="container my-3">
-        {/* <strong className="mb-4 d-block text-muted">
+        <strong className="mb-4 d-block text-muted">
           تملك دواء لا تحتاجه ؟ ساعد غيرك <Link href="/add">هنا</Link>{" "}
-        </strong> */}
+        </strong>
         <div className="my-3 row g-1">
           <div className="col-7">
             <SearchBox q={q} setQ={setQ} />
@@ -70,12 +70,13 @@ export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
     .collection("availableMedicines")
+    .orderBy("addedAt", "desc")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {
     props: {
       data,
     },
-    revalidate: 5,
+    revalidate: 3,
   };
 }

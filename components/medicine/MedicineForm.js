@@ -11,7 +11,7 @@ const AuthForm = () => {
   if (loading) return <Spinner />;
 
   return (
-    <article className="medicine-form mt-4 mb-8">
+    <article className="medicine-form">
       <div className="d-flex justify-content-between">
         <button
           className={`btn w-100 ms-2 ${
