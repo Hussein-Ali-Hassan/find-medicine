@@ -9,16 +9,6 @@ export default function Navbar({ currentPage }) {
         <Link href="/">
           <div
             className={`my-nav-item ${
-              currentPage === "home" ? "text-primary" : ""
-            }`}
-          >
-            <FaMedkit className="fs-3" />
-            <span>الأدوية المتوفرة</span>
-          </div>
-        </Link>{" "}
-        <Link href="/help">
-          <div
-            className={`my-nav-item ${
               currentPage === "help" ? "text-primary" : ""
             }`}
           >
@@ -26,16 +16,16 @@ export default function Navbar({ currentPage }) {
             <span>الأدوية المطلوبة</span>
           </div>
         </Link>
-        <Link href="/add">
+        <Link href="/give">
           <div
             className={`my-nav-item ${
-              currentPage === "add" ? "text-primary" : ""
+              currentPage === "home" ? "text-primary" : ""
             }`}
           >
-            <FaPlusSquare className="fs-3" />
-            <span>تقديم طلب</span>
+            <FaMedkit className="fs-3" />
+            <span>الأدوية المتوفرة</span>
           </div>
-        </Link>
+        </Link>{" "}
       </nav>
     </>
   );

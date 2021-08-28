@@ -1,0 +1,32 @@
+.medicines-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  margin-top: 35px;
+  padding-bottom: 5rem;
+  gap: 1.1rem;
+
+  .card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  }
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .medicines-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 990px) {
+  .medicines-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .medicines-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

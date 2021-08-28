@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Navbar from "@/components/Navbar";
-import IntroSlider from "@/components/IntroSlider";
 import firebase from "../config/firebase";
 import SearchBox from "@/components/SearchBox";
 import FilterBox from "@/components/FilterBox";
-import Medicine from "@/components/Medicine";
+import MedicineCard from "@/components/MedicineCard";
+import IntroSlider from "@/components/IntroSlider";
 
 export default function Home({ data }) {
   const [q, setQ] = useState("");
@@ -45,12 +45,11 @@ export default function Home({ data }) {
   return (
     <>
       {showSlide && <IntroSlider />}
-      <Navbar currentPage="home" />
-      <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المتوفرة</h1>
-
+      <Navbar currentPage="help" />
+      <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
         <strong className="mb-4 d-block text-muted">
-          تملك دواء لا تحتاجه ؟ ساعد غيرك بتعبئة{" "}
+          تبحث عن دواء ولا تجده ؟ قم بتعبئة{" "}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe2oJQjvCbMxQ5MKSGgoikVpNDGkB7Bk0xL2krwttQAMoXyvQ/viewform?usp=sf_link"
             target="_blank"
@@ -68,11 +67,11 @@ export default function Home({ data }) {
           </div>
         </div>
         {data.length === 0 && (
-          <h2 className="mt-5">لا يوجد أدوية متوفرة في الوقت الحالي</h2>
+          <h2 className="mt-5">لا يوجد أدوية مطلوبة في الوقت الحالي</h2>
         )}
         <main className="medicines-container">
           {search(data).map((medicine) => (
-            <Medicine key={medicine.name} medicine={medicine} />
+            <MedicineCard key={medicine.name} medicine={medicine} />
           ))}
         </main>
       </div>
@@ -83,13 +82,13 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
-    .collection("availableMedicines")
+    .collection("wantedMedicines")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {
     props: {
       data,
     },
-    revalidate: 10,
+    revalidate: 5,
   };
 }
