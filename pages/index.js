@@ -49,9 +49,9 @@ export default function Home({ data }) {
       <Navbar currentPage="help" />
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
-        <strong className="mb-4 d-block text-muted">
+        {/* <strong className="mb-4 d-block text-muted">
            تحتاج دواء ولا تجده ؟ أرسل طلبك <Link href="/add">هنا</Link>{" "}
-        </strong>
+        </strong> */}
         <div className="my-3 row g-1">
           <div className="col-7">
             <SearchBox q={q} setQ={setQ} />
