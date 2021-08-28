@@ -17,7 +17,7 @@ export default function MedicineCard({ medicine }) {
           </p>
         )}
         <p className="card-text">
-          <strong>الدواء المطلوب: </strong> {name}
+          <strong> الدواء: </strong> {name}
         </p>
         {disease && (
           <p className="card-text">
