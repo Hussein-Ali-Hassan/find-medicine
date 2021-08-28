@@ -80,6 +80,7 @@ const AddMedicine = ({ setLoading }) => {
             .then(() => {
               setLoading(false);
               alert("تم ارسال الدواء! شكرا لمساهمتكم");
+              window.location = "/give";
             })
             .catch((err) => alert(err.message));
         }

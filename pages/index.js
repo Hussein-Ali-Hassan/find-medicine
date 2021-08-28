@@ -77,7 +77,7 @@ export async function getStaticProps() {
   const snapshot = await firebase
     .firestore()
     .collection("wantedMedicines")
-    .orderBy("addedAt", "desc")
+    .orderBy("addedAt", "asc")
     .get();
   const data = snapshot.docs.map((doc) => doc.data());
   return {

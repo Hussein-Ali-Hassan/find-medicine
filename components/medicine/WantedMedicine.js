@@ -57,6 +57,7 @@ const AddMedicine = ({ setLoading }) => {
                 .then(() => {
                   setLoading(false);
                   alert("تم ارسال طلبكم! نأمل أن تجدوا طلبكم");
+                  window.location = "/";
                 })
                 .catch((err) => alert(err.message));
             }
