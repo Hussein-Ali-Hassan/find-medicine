@@ -45,7 +45,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      {showSlide && <IntroSlider />}
+      {/* {showSlide && <IntroSlider />} */}
       <Navbar currentPage="help" />
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
