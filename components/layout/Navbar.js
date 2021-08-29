@@ -1,6 +1,11 @@
 /* eslint-disable @next/next/link-passhref */
 import Link from "next/link";
-import { FaMedkit, FaCommentMedical, FaPlusSquare } from "react-icons/fa";
+import {
+  FaMedkit,
+  FaCommentMedical,
+  FaPlusSquare,
+  FaQuestionCircle,
+} from "react-icons/fa";
 
 export default function Navbar({ currentPage }) {
   return (
@@ -12,7 +17,7 @@ export default function Navbar({ currentPage }) {
               currentPage === "help" ? "text-primary" : ""
             }`}
           >
-            <FaCommentMedical className="fs-3" />
+            <FaCommentMedical className="fs-2" />
             <span>الأدوية المطلوبة</span>
           </div>
         </Link>
@@ -22,7 +27,7 @@ export default function Navbar({ currentPage }) {
               currentPage === "home" ? "text-primary" : ""
             }`}
           >
-            <FaMedkit className="fs-3" />
+            <FaMedkit className="fs-2" />
             <span>الأدوية المتوفرة</span>
           </div>
         </Link>{" "}
@@ -32,8 +37,18 @@ export default function Navbar({ currentPage }) {
               currentPage === "add" ? "text-primary" : ""
             }`}
           >
-            <FaPlusSquare className="fs-3" />
+            <FaPlusSquare className="fs-2" />
             <span>تقديم طلب</span>
+          </div>
+        </Link>
+        <Link href="/about">
+          <div
+            className={`my-nav-item ${
+              currentPage === "about" ? "text-primary" : ""
+            }`}
+          >
+            <FaQuestionCircle className="fs-2" />
+            <span> فكرة المنصة</span>
           </div>
         </Link>
       </nav>

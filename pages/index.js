@@ -5,29 +5,22 @@ import Navbar from "@/components/layout/Navbar";
 import SearchBox from "@/components/utils/SearchBox";
 import FilterBox from "@/components/utils/FilterBox";
 import MedicineCard from "@/components/medicine/MedicineCard";
-import IntroSlider from "@/components/utils/IntroSlider";
 
 import firebase from "../config/firebase";
 import useSearchAndFilter from "helpers/useSearchAndFilter";
 
 export default function Home({ data }) {
   const [items, setItems] = useState([]);
-  const [showSlide, setShowSlide] = useState(false);
   const { q, setQ, setFilterParam, search } = useSearchAndFilter();
 
   useEffect(() => {
     setItems(data);
 
-    if (!localStorage.getItem("slide")) {
-      setShowSlide(true);
-      localStorage.setItem("slide", true);
-    }
     // eslint-disable-next-line
   }, []);
 
   return (
     <>
-      {showSlide && <IntroSlider />}
       <Navbar currentPage="help" />
       <h1 className="text-center bg-light p-3 py-4">لائحة الأدوية المطلوبة</h1>
       <div className="container my-3">
