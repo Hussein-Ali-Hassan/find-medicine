@@ -5,9 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import SearchBox from "@/components/utils/SearchBox";
 import FilterBox from "@/components/utils/FilterBox";
 import MedicineCard from "@/components/medicine/MedicineCard";
-
-import firebase from "../config/firebase";
 import useSearchAndFilter from "helpers/useSearchAndFilter";
+import { db, collection, query, orderBy, getDocs } from "../config/firebase";
 
 export default function Give({ data }) {
   const [items, setItems] = useState([]);
@@ -49,12 +48,13 @@ export default function Give({ data }) {
 }
 
 export async function getServerSideProps() {
-  const snapshot = await firebase
-    .firestore()
-    .collection("availableMedicines")
-    .orderBy("addedAt", "desc")
-    .get();
-  const data = snapshot.docs.map((doc) => doc.data());
+  const q = query(
+    collection(db, "availableMedicines"),
+    orderBy("addedAt", "desc")
+  );
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => doc.data());
+
   return {
     props: {
       data,

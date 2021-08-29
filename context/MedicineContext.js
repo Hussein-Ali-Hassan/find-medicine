@@ -2,7 +2,15 @@ import { createContext, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 
-import firebase from "../config/firebase";
+import {
+  db,
+  collection,
+  addDoc,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "../config/firebase";
 
 const MedicineContext = createContext();
 
@@ -24,24 +32,27 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (image) {
-      const storageRef = firebase.storage().ref(image.name);
+      const storage = getStorage();
+      const storageRef = ref(storage, image.name);
 
-      storageRef.put(image).on(
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
         "state_changed",
         (snap) => {},
         (err) => {
           toast.error("عذرا حصل خطأ, الرجاء إعادة المحاولة");
         },
-        async () => {
-          const url = await storageRef.getDownloadURL();
-          data.image = url;
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            data.image = downloadURL;
 
-          sendToFirestore(
-            "wantedMedicines",
-            data,
-            "تم ارسال طلبكم! نأمل أن تجدوا طلبكم",
-            "/"
-          );
+            sendToFirestore(
+              "wantedMedicines",
+              data,
+              "تم ارسال طلبكم! نأمل أن تجدوا طلبكم",
+              "/"
+            );
+          });
         }
       );
     } else sendToFirestore("wantedMedicines", data, "تم ارسال طلبكم!", "/");
@@ -66,24 +77,27 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (image) {
-      const storageRef = firebase.storage().ref(image.name);
+      const storage = getStorage();
+      const storageRef = ref(storage, image.name);
 
-      storageRef.put(image).on(
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
         "state_changed",
         (snap) => {},
         (err) => {
           toast.error("عذرا حصل خطأ, الرجاء إعادة المحاولة");
         },
-        async () => {
-          const url = await storageRef.getDownloadURL();
-          data.image = url;
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            data.image = downloadURL;
 
-          sendToFirestore(
-            "availableMedicines",
-            data,
-            "تم ارسال الدواء! شكرا لمساهمتكم",
-            "/give"
-          );
+            sendToFirestore(
+              "availableMedicines",
+              data,
+              "تم ارسال الدواء! شكرا لمساهمتكم",
+              "/give"
+            );
+          });
         }
       );
     } else
@@ -96,10 +110,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   function sendToFirestore(collectionName, data, responseMessage, destination) {
-    firebase
-      .firestore()
-      .collection(collectionName)
-      .add(data)
+    addDoc(collection(db, collectionName), data)
       .then(() => {
         setLoading(false);
         toast.success(responseMessage);
