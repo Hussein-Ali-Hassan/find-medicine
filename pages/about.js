@@ -15,7 +15,10 @@ export default function About() {
 
       <div className="container mb-4 pb-8 fs-3">
         <div className="text-center">
-          <img src="icon/drug.svg" width="120" className="m-auto mt-4 mb-5" />
+          <img
+            src="icon/drug.svg"
+            className="about-page-img m-auto mt-4 mb-5"
+          />
         </div>
         <p>
           <FaExclamationTriangle className="fs-4 text-warning mx-2 mb-1" />
