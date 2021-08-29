@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default () => {
+const useSearchAndFilter = () => {
   const [q, setQ] = useState("");
   const [searchParam] = useState(["name"]);
   const [filterParam, setFilterParam] = useState(["All"]);
@@ -25,3 +25,5 @@ export default () => {
 
   return { q, setQ, setFilterParam, search };
 };
+
+export default useSearchAndFilter;

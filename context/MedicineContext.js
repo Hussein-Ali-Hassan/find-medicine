@@ -1,14 +1,27 @@
 import { createContext, useState } from "react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+
 import firebase from "../config/firebase";
 
 const MedicineContext = createContext();
 
+const addedAt = new Date().toLocaleDateString();
+
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+
   const submitWantedMedicine = ({ name, city, disease, contact, image }) => {
     setLoading(true);
-    const addedAt = new Date().toLocaleDateString();
+    const data = {
+      name,
+      city,
+      disease,
+      contact,
+      addedAt,
+    };
 
     if (image) {
       const storageRef = firebase.storage().ref(image.name);
@@ -17,47 +30,21 @@ export const AuthProvider = ({ children }) => {
         "state_changed",
         (snap) => {},
         (err) => {
-          alert(err.message);
+          toast.error("عذرا حصل خطأ, الرجاء إعادة المحاولة");
         },
         async () => {
           const url = await storageRef.getDownloadURL();
+          data.image = url;
 
-          firebase
-            .firestore()
-            .collection("wantedMedicines")
-            .add({
-              name,
-              city,
-              disease,
-              contact,
-              addedAt,
-              image: url,
-            })
-            .then(() => {
-              setLoading(false);
-              alert("تم ارسال طلبكم! نأمل أن تجدوا طلبكم");
-              window.location = "/";
-            })
-            .catch((err) => alert(err.message));
+          sendToFirestore(
+            "wantedMedicines",
+            data,
+            "تم ارسال طلبكم! نأمل أن تجدوا طلبكم",
+            "/"
+          );
         }
       );
-    } else {
-      firebase
-        .firestore()
-        .collection("wantedMedicines")
-        .add({
-          name,
-          city,
-          disease,
-          contact,
-          addedAt,
-        })
-        .then(() => {
-          setLoading(false);
-          alert("تم ارسال طلبكم!");
-        })
-        .catch((err) => alert(err.message));
-    }
+    } else sendToFirestore("wantedMedicines", data, "تم ارسال طلبكم!", "/");
   };
 
   const submitAvailabelMedicine = ({
@@ -69,7 +56,14 @@ export const AuthProvider = ({ children }) => {
     image,
   }) => {
     setLoading(true);
-    const addedAt = new Date().toLocaleDateString();
+    const data = {
+      name,
+      city,
+      disease,
+      contact,
+      expiryDate,
+      addedAt,
+    };
 
     if (image) {
       const storageRef = firebase.storage().ref(image.name);
@@ -78,51 +72,41 @@ export const AuthProvider = ({ children }) => {
         "state_changed",
         (snap) => {},
         (err) => {
-          alert(err.message);
+          toast.error("عذرا حصل خطأ, الرجاء إعادة المحاولة");
         },
         async () => {
           const url = await storageRef.getDownloadURL();
+          data.image = url;
 
-          firebase
-            .firestore()
-            .collection("availableMedicines")
-            .add({
-              name,
-              city,
-              disease,
-              contact,
-              addedAt,
-              expiryDate,
-              image: url,
-            })
-            .then(() => {
-              setLoading(false);
-              alert("تم ارسال الدواء! شكرا لمساهمتكم");
-              window.location = "/give";
-            })
-            .catch((err) => alert(err.message));
+          sendToFirestore(
+            "availableMedicines",
+            data,
+            "تم ارسال الدواء! شكرا لمساهمتكم",
+            "/give"
+          );
         }
       );
-    } else {
-      firebase
-        .firestore()
-        .collection("availableMedicines")
-        .add({
-          name,
-          city,
-          disease,
-          contact,
-          addedAt,
-          expiryDate,
-        })
-        .then(() => {
-          setLoading(false);
-          alert("تم ارسال الدواء! شكرا لمساهمتكم");
-          window.location = "/give";
-        })
-        .catch((err) => alert(err.message));
-    }
+    } else
+      sendToFirestore(
+        "availableMedicines",
+        data,
+        "تم ارسال الدواء! شكرا لمساهمتكم",
+        "/give"
+      );
   };
+
+  function sendToFirestore(collectionName, data, responseMessage, destination) {
+    firebase
+      .firestore()
+      .collection(collectionName)
+      .add(data)
+      .then(() => {
+        setLoading(false);
+        toast.success(responseMessage);
+        router.push(destination);
+      })
+      .catch((err) => toast.error("عذرا حصل خطأ, الرجاء إعادة المحاولة"));
+  }
 
   return (
     <MedicineContext.Provider

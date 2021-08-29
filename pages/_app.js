@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 
 import { AuthProvider } from "@/context/MedicineContext";
 import "../styles/globals.scss";
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }) {
       </Head>{" "}
       <AuthProvider>
         <Component {...pageProps} />
+        <Toaster position="top-left" />
       </AuthProvider>
     </>
   );
