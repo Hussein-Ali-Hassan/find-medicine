@@ -2,7 +2,7 @@
 import React from "react";
 import { Field, useField, ErrorMessage } from "formik";
 
-const SelectField = ({ label,  ...rest }) => {
+const SelectField = ({ label, ...rest }) => {
   const [field, meta] = useField(rest);
 
   return (
@@ -19,16 +19,16 @@ const SelectField = ({ label,  ...rest }) => {
           العنوان
         </option>
         <option value="بيروت">بيروت</option>
-        <optgroup label="محافظة الجنوب">
-          <option value="صيدا">صيدا</option>
-          <option value="صور">صور</option>
-          <option value="جزين">جزين</option>
-        </optgroup>
         <optgroup label="محافظة النبطية">
           <option value="النبطية">النبطية</option>
           <option value="حاصبيا">حاصبيا</option>
           <option value="مرجعيون">مرجعيون</option>
           <option value="بنت جبيل"> بنت جبيل</option>
+        </optgroup>
+        <optgroup label="محافظة الجنوب">
+          <option value="صيدا">صيدا</option>
+          <option value="صور">صور</option>
+          <option value="جزين">جزين</option>
         </optgroup>
         <optgroup label="محافظة عكار">
           <option value="عكار">عكار</option>

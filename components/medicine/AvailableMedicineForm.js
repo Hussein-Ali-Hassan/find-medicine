@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import TextField from "@/components/form/TextField";
-import SelectField from "@/components/form/SelectField";
-import ImageUpload from "@/components/form/ImageUpload";
-import firebase from "../../config/firebase";
+import MedicineContext from "@/context/MedicineContext";
+import TextField from "@/components/form-elements/TextField";
+import SelectField from "@/components/form-elements/SelectField";
+import ImageUpload from "@/components/form-elements/ImageUpload";
 
-const AddMedicine = ({ setLoading }) => {
+const AddMedicine = () => {
+  const { submitAvailabelMedicine } = useContext(MedicineContext);
   const [image, setImage] = useState(null);
 
   const validate = Yup.object({
@@ -31,59 +32,14 @@ const AddMedicine = ({ setLoading }) => {
       }}
       validationSchema={validate}
       onSubmit={({ name, expiryDate, city, contact, disease }) => {
-        setLoading(true);
-        const addedAt = new Date().toLocaleDateString();
-
-        if (image) {
-          const storageRef = firebase.storage().ref(image.name);
-
-          storageRef.put(image).on(
-            "state_changed",
-            (snap) => {},
-            (err) => {
-              alert(err.message);
-            },
-            async () => {
-              const url = await storageRef.getDownloadURL();
-
-              firebase
-                .firestore()
-                .collection("availableMedicines")
-                .add({
-                  name,
-                  city,
-                  disease,
-                  contact,
-                  addedAt,
-                  expiryDate,
-                  image: url,
-                })
-                .then(() => {
-                  setLoading(false);
-                  alert("تم ارسال الدواء! شكرا لمساهمتكم");
-                })
-                .catch((err) => alert(err.message));
-            }
-          );
-        } else {
-          firebase
-            .firestore()
-            .collection("availableMedicines")
-            .add({
-              name,
-              city,
-              disease,
-              contact,
-              addedAt,
-              expiryDate,
-            })
-            .then(() => {
-              setLoading(false);
-              alert("تم ارسال الدواء! شكرا لمساهمتكم");
-              window.location = "/give";
-            })
-            .catch((err) => alert(err.message));
-        }
+        submitAvailabelMedicine({
+          name,
+          expiryDate,
+          city,
+          contact,
+          disease,
+          image,
+        });
       }}
     >
       {({ isValid }) => (

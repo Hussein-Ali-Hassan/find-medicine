@@ -1,5 +1,6 @@
 import Head from "next/head";
 
+import { AuthProvider } from "@/context/MedicineContext";
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
@@ -27,7 +28,9 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>{" "}
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </>
   );
 }

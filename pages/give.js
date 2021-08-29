@@ -1,40 +1,22 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
+import SearchBox from "@/components/utils/SearchBox";
+import FilterBox from "@/components/utils/FilterBox";
+import MedicineCard from "@/components/medicine/MedicineCard";
+
 import firebase from "../config/firebase";
-import SearchBox from "@/components/SearchBox";
-import FilterBox from "@/components/FilterBox";
-import MedicineCard from "@/components/MedicineCard";
+import useSearchAndFilter from "helpers/useSearchAndFilter";
 
 export default function Give({ data }) {
-  const [q, setQ] = useState("");
   const [items, setItems] = useState([]);
-  const [searchParam] = useState(["name"]);
-  const [filterParam, setFilterParam] = useState(["All"]);
+  const { q, setQ, setFilterParam, search } = useSearchAndFilter();
 
   useEffect(() => {
     setItems(data);
     // eslint-disable-next-line
   }, []);
-
-  function search(items) {
-    return items.filter((item) => {
-      if (item.city == filterParam) {
-        return searchParam.some((newItem) => {
-          return (
-            item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-          );
-        });
-      } else if (filterParam == "All") {
-        return searchParam.some((newItem) => {
-          return (
-            item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-          );
-        });
-      }
-    });
-  }
 
   return (
     <>

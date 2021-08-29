@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-import Spinner from "@/components/Spinner";
-import AddMedicine from "./AddMedicine";
-import WantedMedicine from "./WantedMedicine";
+import MedicineContext from "@/context/MedicineContext";
+import Spinner from "@/components/utils/Spinner";
+import AddMedicine from "./AvailableMedicineForm";
+import WantedMedicine from "./WantedMedicineForm";
 
 const AuthForm = () => {
+  const { loading } = useContext(MedicineContext);
   const [authState, setAuthState] = useState("wanted");
-  const [loading, setLoading] = useState(false);
 
   if (loading) return <Spinner />;
 
@@ -32,11 +33,7 @@ const AuthForm = () => {
         </button>
       </div>
       <div className="py-4 px-3">
-        {authState === "wanted" ? (
-          <WantedMedicine setLoading={setLoading} />
-        ) : (
-          <AddMedicine setLoading={setLoading} />
-        )}
+        {authState === "wanted" ? <WantedMedicine /> : <AddMedicine />}
       </div>
     </article>
   );
