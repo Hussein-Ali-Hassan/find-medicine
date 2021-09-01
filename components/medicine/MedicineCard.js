@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MedicineCard({ medicine }) {
+export default function MedicineCard({ medicine, available }) {
   const { name, disease, city, contact, image, expiryDate, addedAt } = medicine;
 
   return (
@@ -12,9 +12,17 @@ export default function MedicineCard({ medicine }) {
       />
       <div className="card-body">
         {addedAt && (
-          <p className="card-text">
-            <strong>تاريخ الطلب: </strong> {addedAt}
-          </p>
+          <>
+            {available ? (
+              <p className="card-text">
+                <strong>تاريخ العرض: </strong> {addedAt}
+              </p>
+            ) : (
+              <p className="card-text">
+                <strong>تاريخ الطلب: </strong> {addedAt}
+              </p>
+            )}
+          </>
         )}
         <p className="card-text">
           <strong> الدواء: </strong> {name}

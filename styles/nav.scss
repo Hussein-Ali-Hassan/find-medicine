@@ -2,10 +2,10 @@
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   width: 100vw;
-  padding: 0.7rem 0 0.7rem;
+  padding: 0.7rem 0 0.8rem;
   z-index: 19;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   background-color: #fff;
@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   span {
     margin-top: 5px;

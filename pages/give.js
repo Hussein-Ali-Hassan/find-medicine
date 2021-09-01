@@ -39,7 +39,11 @@ export default function Give({ data }) {
         )}
         <main className="medicines-container">
           {search(data).map((medicine) => (
-            <MedicineCard key={medicine.name} medicine={medicine} />
+            <MedicineCard
+              key={medicine.name}
+              medicine={medicine}
+              available={true}
+            />
           ))}
         </main>
       </div>

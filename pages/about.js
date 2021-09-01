@@ -33,7 +33,7 @@ export default function About() {
         <br />
         <p>
           <FaAngleDoubleLeft className="fs-4 text-danger mx-2 mb-1" /> المنصة
-          مؤلفة من ٣ صفحات
+          مؤلفة من ٣ صفحات رئيسية:
         </p>
         <p>
           <FaAngleLeft className="fs-4 text-primary mx-2 mb-1" /> الصفحة الأولى
