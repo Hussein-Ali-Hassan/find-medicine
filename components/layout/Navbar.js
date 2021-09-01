@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   FaMedkit,
   FaCommentMedical,
-  FaPlusSquare,
+  FaPlus,
   FaLightbulb,
   FaQuestionCircle,
 } from "react-icons/fa";
@@ -34,12 +34,11 @@ export default function Navbar({ currentPage }) {
         </Link>{" "}
         <Link href="/add">
           <div
-            className={`my-nav-item ${
+            className={`my-nav-item add-btn ${
               currentPage === "add" ? "text-primary" : ""
             }`}
           >
-            <FaPlusSquare />
-            <span>تقديم طلب</span>
+            <FaPlus className="fs-3" />
           </div>
         </Link>
         <Link href="/ideas">
@@ -59,7 +58,7 @@ export default function Navbar({ currentPage }) {
             }`}
           >
             <FaQuestionCircle />
-            <span> فكرة المنصة</span>
+            <span> المنصة</span>
           </div>
         </Link>
       </nav>

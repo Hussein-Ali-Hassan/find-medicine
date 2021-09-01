@@ -4,6 +4,7 @@ import {
   FaAngleDoubleLeft,
   FaAngleLeft,
 } from "react-icons/fa";
+import Link from "next/link";
 
 import Navbar from "@/components/layout/Navbar";
 
@@ -36,18 +37,19 @@ export default function About() {
           مؤلفة من ٣ صفحات رئيسية:
         </p>
         <p>
-          <FaAngleLeft className="fs-4 text-primary mx-2 mb-1" /> الصفحة الأولى
-          لعرض الادوية المطلوبة والناس محتاجينها
+          <FaAngleLeft className="fs-4 text-primary mx-2 mb-1" />
+          <Link href="/">الصفحة الأولى</Link> لعرض الادوية المطلوبة والناس
+          محتاجينها
         </p>
         <p>
           <FaAngleLeft className="fs-4 text-primary mx-2 mb-1" />
-          الصفحة الثانية لعرض الادوية المتوفرة عند شخص معين وهو جاهز يعطيها
-          للمحتاج
+          <Link href="/give">الصفحة الثانية</Link> لعرض الادوية المتوفرة عند شخص
+          معين وهو جاهز يعطيها للمحتاج
         </p>
         <p>
           <FaAngleLeft className="fs-4 text-primary mx-2 mb-1" />
-          الصفحة الثالثة لتقديم طلبك: ان كنت بحاجة لدواء او تملك دواء وتريد
-          المساعدة
+          <Link href="/add">الصفحة الثالثة</Link> لتقديم طلبك: ان كنت بحاجة
+          لدواء او تملك دواء وتريد المساعدة
         </p>
       </div>
     </>
