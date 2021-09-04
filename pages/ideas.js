@@ -32,6 +32,7 @@ export default function Ideas() {
             value="https://findmedicine.org/thanks"
           />
           <input type="hidden" name="_subject" value="Medicine Website!" />
+          <input type="hidden" name="_captcha" value="false" />
           <input type="text" name="_honey" style={{ display: "none" }} />
         </form>
       </main>
