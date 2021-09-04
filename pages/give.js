@@ -9,13 +9,7 @@ import useSearchAndFilter from "helpers/useSearchAndFilter";
 import { db, collection, query, orderBy, getDocs } from "../config/firebase";
 
 export default function Give({ data }) {
-  const [items, setItems] = useState([]);
   const { q, setQ, setFilterParam, search } = useSearchAndFilter();
-
-  useEffect(() => {
-    setItems(data);
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <>

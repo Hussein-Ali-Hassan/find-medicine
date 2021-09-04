@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import dayjs from "dayjs";
 
 import {
   db,
@@ -14,7 +15,7 @@ import {
 
 const MedicineContext = createContext();
 
-const addedAt = new Date().toLocaleDateString();
+const addedAt = dayjs().format("YYYY-MM-DD");
 
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
