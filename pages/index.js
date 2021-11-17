@@ -40,7 +40,7 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const q = query(
     collection(db, "wantedMedicines"),
     orderBy("addedAt", "desc")

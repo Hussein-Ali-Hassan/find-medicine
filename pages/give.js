@@ -45,7 +45,7 @@ export default function Give({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const q = query(
     collection(db, "availableMedicines"),
     orderBy("addedAt", "desc")
